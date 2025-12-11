@@ -14,12 +14,12 @@
 .title {
     font-size: 1.5rem;
     font-weight: 700;
-    color: var(--text-dark);
+    color: var(--heading-dark);
     margin-bottom: 1.5rem;
 }
 
 .content {
-    color: var(--text-gray);
+    color: var(--text-light);
     line-height: 1.6;
 }
 

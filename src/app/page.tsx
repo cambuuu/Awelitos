@@ -1,8 +1,14 @@
 import Hero from "@/components/Hero/Hero";
 import InfoCard from "@/components/InfoCard/InfoCard";
 import Carousel from "@/components/Carousel/Carousel";
-import CTASection from "@/components/CTASection/CTASection";
+
 import styles from "./page.module.css";
+
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Inicio | Salud mental sin tabúes",
+};
 
 export default function Home() {
   return (
@@ -24,7 +30,7 @@ export default function Home() {
               </ul>
               <h3>Nuestra Misión</h3>
               <p>
-                "Rompiendo el silencio: salud mental sin tabúes" nace como un proyecto de estudiantes de técnico en Trabajo Social que busca ofrecer apoyo, información clara y herramientas prácticas para quienes cuidan de adultos mayores.
+                "Rompiendo el silencio: Salud mental sin tabúes" nace como un proyecto de estudiantes de técnico en Trabajo Social que busca ofrecer apoyo, información clara y herramientas prácticas para quienes cuidan de adultos mayores.
               </p>
               <p>
                 Creemos que los cuidadores cumplen un rol esencial, y queremos acompañarlos en ese camino para que se sientan más preparados, informados y confiados en su labor.
@@ -160,7 +166,6 @@ export default function Home() {
             </InfoCard>
           </div>
         </div>
-        <CTASection />
       </div>
     </main>
   );

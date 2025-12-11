@@ -12,8 +12,8 @@ const CTASection = () => {
             <section className={styles.cta}>
                 <h2 className={styles.title}>¿Necesitas más información?</h2>
                 <p className={styles.text}>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Estamos aquí
-                    para ayudarte en cada paso del camino.
+                    Si tienes dudas, necesitas orientación o simplemente quieres conversar,
+                    no dudes en escribirnos. Estamos contigo.
                 </p>
                 <button
                     className={styles.button}
