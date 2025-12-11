@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from 'react';
-import styles from '../../components/ContactModal/ContactModal.module.css';
+import styles from './contact.module.css';
 
 export default function ContactForm() {
     const [formData, setFormData] = useState({
@@ -43,55 +43,67 @@ export default function ContactForm() {
     };
 
     return (
-        <div style={{ padding: '1rem' }}>
+        <div className={styles.formCard}>
             <form onSubmit={handleSubmit} className={styles.form}>
-                <div className={styles.formGroup}>
-                    <label htmlFor="page-name" className={styles.label}>Nombre</label>
-                    <input
-                        type="text"
-                        id="page-name"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleChange}
-                        className={styles.input}
-                        required
-                        disabled={status === 'loading'}
-                    />
+                <div className={styles.formHeader}>
+                    <h3 className={styles.formTitle}>Envíanos un mensaje</h3>
+                    <p className={styles.formSubtitle}>Completa el formulario y nos pondremos en contacto contigo.</p>
                 </div>
 
-                <div className={styles.formGroup}>
-                    <label htmlFor="page-email" className={styles.label}>Correo Electrónico</label>
-                    <input
-                        type="email"
-                        id="page-email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        className={styles.input}
-                        required
-                        disabled={status === 'loading'}
-                    />
-                </div>
+                <label className={styles.label}>
+                    <span className={styles.labelText}>Nombre</span>
+                    <div className={styles.inputWrapper}>
+                        <input
+                            className={styles.input}
+                            placeholder="Tu nombre completo"
+                            type="text"
+                            name="name"
+                            value={formData.name}
+                            onChange={handleChange}
+                            required
+                            disabled={status === 'loading'}
+                        />
+                        <span className={`material-symbols-outlined ${styles.inputIcon}`}>person</span>
+                    </div>
+                </label>
 
-                <div className={styles.formGroup}>
-                    <label htmlFor="page-message" className={styles.label}>Mensaje</label>
+                <label className={styles.label}>
+                    <span className={styles.labelText}>Correo Electrónico</span>
+                    <div className={styles.inputWrapper}>
+                        <input
+                            className={styles.input}
+                            placeholder="ejemplo@correo.com"
+                            type="email"
+                            name="email"
+                            value={formData.email}
+                            onChange={handleChange}
+                            required
+                            disabled={status === 'loading'}
+                        />
+                        <span className={`material-symbols-outlined ${styles.inputIcon}`}>email</span>
+                    </div>
+                </label>
+
+                <label className={styles.label}>
+                    <span className={styles.labelText}>Mensaje</span>
                     <textarea
-                        id="page-message"
+                        className={styles.textarea}
+                        placeholder="Cuéntanos en qué podemos ayudarte..."
                         name="message"
                         value={formData.message}
                         onChange={handleChange}
-                        className={styles.textarea}
                         required
                         disabled={status === 'loading'}
-                    />
-                </div>
+                    ></textarea>
+                </label>
 
                 <button
                     type="submit"
                     className={styles.submitButton}
                     disabled={status === 'loading'}
                 >
-                    {status === 'loading' ? 'Enviando...' : 'Enviar Mensaje'}
+                    <span>{status === 'loading' ? 'Enviando...' : 'Enviar Mensaje'}</span>
+                    <span className="material-symbols-outlined" style={{ fontSize: '20px' }}>send</span>
                 </button>
 
                 {status === 'success' && (
@@ -100,6 +112,10 @@ export default function ContactForm() {
                 {status === 'error' && (
                     <p className={styles.errorMessage}>Hubo un error al enviar el mensaje.</p>
                 )}
+
+                <p className={styles.disclaimer}>
+                    Al enviar este formulario, aceptas nuestra <a className={styles.link} href="#">política de privacidad</a>.
+                </p>
             </form>
         </div>
     );

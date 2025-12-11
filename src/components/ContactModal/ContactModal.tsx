@@ -57,42 +57,55 @@ const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
                     </div>
                 ) : (
                     <>
-                        <h2 className={styles.title}>Contáctanos</h2>
+                        <div className={styles.formHeader}>
+                            <h2 className={styles.title}>Contáctanos</h2>
+                            <p className={styles.subtitle}>Completa el formulario y nos pondremos en contacto contigo.</p>
+                        </div>
+
                         <form className={styles.form} onSubmit={handleSubmit}>
-                            <div className={styles.formGroup}>
-                                <label className={styles.label} htmlFor="name">Nombre</label>
-                                <input
-                                    type="text"
-                                    id="name"
-                                    className={styles.input}
-                                    required
-                                    value={formData.name}
-                                    onChange={e => setFormData({ ...formData, name: e.target.value })}
-                                />
-                            </div>
+                            <label className={styles.label}>
+                                <span className={styles.labelText}>Nombre</span>
+                                <div className={styles.inputWrapper}>
+                                    <input
+                                        className={styles.input}
+                                        placeholder="Tu nombre completo"
+                                        type="text"
+                                        value={formData.name}
+                                        onChange={e => setFormData({ ...formData, name: e.target.value })}
+                                        required
+                                        disabled={status === 'loading'}
+                                    />
+                                    <span className={`material-symbols-outlined ${styles.inputIcon}`}>person</span>
+                                </div>
+                            </label>
 
-                            <div className={styles.formGroup}>
-                                <label className={styles.label} htmlFor="email">Email</label>
-                                <input
-                                    type="email"
-                                    id="email"
-                                    className={styles.input}
-                                    required
-                                    value={formData.email}
-                                    onChange={e => setFormData({ ...formData, email: e.target.value })}
-                                />
-                            </div>
+                            <label className={styles.label}>
+                                <span className={styles.labelText}>Correo Electrónico</span>
+                                <div className={styles.inputWrapper}>
+                                    <input
+                                        className={styles.input}
+                                        placeholder="ejemplo@correo.com"
+                                        type="email"
+                                        value={formData.email}
+                                        onChange={e => setFormData({ ...formData, email: e.target.value })}
+                                        required
+                                        disabled={status === 'loading'}
+                                    />
+                                    <span className={`material-symbols-outlined ${styles.inputIcon}`}>email</span>
+                                </div>
+                            </label>
 
-                            <div className={styles.formGroup}>
-                                <label className={styles.label} htmlFor="message">Mensaje</label>
+                            <label className={styles.label}>
+                                <span className={styles.labelText}>Mensaje</span>
                                 <textarea
-                                    id="message"
                                     className={styles.textarea}
-                                    required
+                                    placeholder="Cuéntanos en qué podemos ayudarte..."
                                     value={formData.message}
                                     onChange={e => setFormData({ ...formData, message: e.target.value })}
-                                />
-                            </div>
+                                    required
+                                    disabled={status === 'loading'}
+                                ></textarea>
+                            </label>
 
                             {status === 'error' && (
                                 <p className={styles.errorMessage}>Hubo un error al enviar el mensaje. Inténtalo de nuevo.</p>
@@ -103,8 +116,13 @@ const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
                                 className={styles.submitButton}
                                 disabled={status === 'loading'}
                             >
-                                {status === 'loading' ? 'Enviando...' : 'Enviar Mensaje'}
+                                <span>{status === 'loading' ? 'Enviando...' : 'Enviar Mensaje'}</span>
+                                <span className="material-symbols-outlined" style={{ fontSize: '20px' }}>send</span>
                             </button>
+
+                            <p className={styles.disclaimer}>
+                                Al enviar este formulario, aceptas nuestra <a className={styles.link} href="#">política de privacidad</a>.
+                            </p>
                         </form>
                     </>
                 )}
